@@ -2035,6 +2035,8 @@
     hoverSound.volume = 0.18;
     hoverSound.preload = 'auto';
     let lastHoverAt = 0;
+    let audioUnlocked = false;
+    let unlockPending = false;
 
     function loadActiveTab() {
       return localStorage.getItem('activeTab') || 'quests';
@@ -2069,6 +2071,29 @@
       applySearchFilter(locationGroups, locationSearch.value);
     });
 
+    function unlockAudio() {
+      if (audioUnlocked || unlockPending) {
+        return;
+      }
+      unlockPending = true;
+      hoverSound.volume = 0;
+      hoverSound.currentTime = 0;
+      hoverSound.play().then(() => {
+        hoverSound.pause();
+        hoverSound.currentTime = 0;
+        hoverSound.volume = 0.18;
+        audioUnlocked = true;
+        unlockPending = false;
+      }).catch(() => {
+        unlockPending = false;
+      });
+    }
+
+    document.addEventListener('pointerdown', unlockAudio, { once: true });
+    document.addEventListener('pointermove', unlockAudio, { once: true });
+    document.addEventListener('touchstart', unlockAudio, { once: true });
+    document.addEventListener('keydown', unlockAudio, { once: true });
+
     document.addEventListener('pointerover', (event) => {
       const target = event.target.closest(
         '.daily-item label, .prompt__nav-tab, .quest-group__title, .location-group__title, .panel__title--button'
@@ -2076,6 +2101,8 @@
       if (!target) {
         return;
       }
+
+      unlockAudio();
 
       const now = Date.now();
       if (now - lastHoverAt < 80) {

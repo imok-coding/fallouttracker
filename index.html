@@ -1,0 +1,2091 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Fallout 76 Checklist Terminal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="terminal">
+    <header class="terminal__header">
+      <div class="terminal__title">FALLOUT 76 // CHECKLIST</div>
+      <div class="terminal__status">STATUS: ONLINE</div>
+    </header>
+
+    <section class="terminal__screen">
+      <div class="terminal__line">VAULT-TEC OS v7.6</div>
+      <div class="terminal__line">Initializing daily operations...</div>
+      <div class="terminal__line">Checklist link established.</div>
+
+      <div class="terminal__prompt terminal__prompt--stack">
+        <span class="prompt__label">&gt;</span>
+        <div class="prompt__row">
+        <nav class="prompt__nav" aria-label="Checklist sections">
+          <span class="prompt__nav-label">MENU</span>
+          <button class="prompt__nav-tab" type="button" data-tab-target="quests" aria-pressed="true">Quests</button>
+          <button class="prompt__nav-tab" type="button" data-tab-target="locations" aria-pressed="false">Locations</button>
+          <button class="prompt__nav-tab" type="button" data-tab-target="events" aria-pressed="false">Events</button>
+        </nav>
+          <span class="prompt__cursor" aria-hidden="true"></span>
+        </div>
+        <label class="prompt__toggle" data-tab-panel="quests">
+          <input type="checkbox" id="fallout1st-toggle" />
+          <span class="prompt__toggle-text">HAVE</span>
+          <span class="visually-hidden">Have Fallout 1st</span>
+          <img class="prompt__icon" src="https://static.wikia.nocookie.net/fallout/images/0/0a/FO1st.png" alt="Fallout 1st" />
+          <span class="prompt__toggle-text">?</span>
+        </label>
+      </div>
+
+      <div class="terminal__panel" aria-label="Daily challenges" data-collapsible="daily-dailies" id="daily-challenges" data-tab-panel="quests">
+        <button class="panel__title panel__title--button" type="button" aria-expanded="true">
+          <span>DAILY CHALLENGES</span>
+          <span class="panel__caret">▼</span>
+        </button>
+        <div class="panel__timer">
+          <span class="panel__timer-label">DAILY RESET IN</span>
+          <span class="panel__timer-value" id="daily-panel-reset" aria-live="polite">--:--:--</span>
+        </div>
+        <div class="panel__meta">
+          SOURCE: NUKA KNIGHTS (UNOFFICIAL)
+          <span class="panel__meta-divider">|</span>
+          <span id="daily-updated">LAST SYNC: --</span>
+        </div>
+        <div class="panel__progress" aria-hidden="true">
+          <div class="panel__progress-label">PROGRESS</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="daily-progress-fill"></div>
+          </div>
+          <div class="progress-text" id="daily-progress-text">0 / 0 COMPLETE</div>
+        </div>
+        <div class="panel__body">
+          <p class="panel__placeholder" id="daily-placeholder">Loading daily challenges...</p>
+          <ul class="daily-list" id="daily-list" aria-live="polite"></ul>
+        </div>
+      </div>
+
+      <div class="terminal__panel" aria-label="Weekly challenges" data-collapsible="weekly-challenges" id="weekly-challenges" data-tab-panel="quests">
+        <button class="panel__title panel__title--button" type="button" aria-expanded="true">
+          <span>WEEKLY CHALLENGES</span>
+          <span class="panel__caret">▼</span>
+        </button>
+        <div class="panel__timer">
+          <span class="panel__timer-label">WEEKLY RESET IN</span>
+          <span class="panel__timer-value" id="weekly-reset" aria-live="polite">--:--:--</span>
+        </div>
+        <div class="panel__meta">
+          SOURCE: NUKA KNIGHTS (UNOFFICIAL)
+          <span class="panel__meta-divider">|</span>
+          <span id="weekly-updated">LAST SYNC: --</span>
+        </div>
+        <div class="panel__progress" aria-hidden="true">
+          <div class="panel__progress-label">PROGRESS</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="weekly-progress-fill"></div>
+          </div>
+          <div class="progress-text" id="weekly-progress-text">0 / 0 COMPLETE</div>
+        </div>
+        <div class="panel__body">
+          <p class="panel__placeholder" id="weekly-placeholder">Loading weekly challenges...</p>
+          <ul class="daily-list" id="weekly-list" aria-live="polite"></ul>
+        </div>
+      </div>
+
+      <div class="terminal__panel" aria-label="Daily quest checklist" data-collapsible="daily-quests" id="daily-quests" data-tab-panel="quests">
+        <button class="panel__title panel__title--button" type="button" aria-expanded="true">
+          <span>DAILY QUEST CHECKLIST</span>
+          <span class="panel__caret">▼</span>
+        </button>
+        <div class="panel__meta">
+          CUSTOM TRACKING
+          <span class="panel__meta-divider">|</span>
+          RESET: DAILY
+        </div>
+        <div class="panel__progress" aria-hidden="true">
+          <div class="panel__progress-label">PROGRESS</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="quest-progress-fill"></div>
+          </div>
+          <div class="progress-text" id="quest-progress-text">0 / 0 COMPLETE</div>
+        </div>
+        <div class="panel__body">
+          <ul class="daily-list" id="quest-list" aria-live="polite"></ul>
+        </div>
+      </div>
+
+      <div class="terminal__panel" aria-label="Quest checklist" id="quest-checklist" data-tab-panel="quests">
+        <div class="panel__title">QUEST CHECKLIST</div>
+        <div class="panel__meta">
+          CUSTOM TRACKING
+          <span class="panel__meta-divider">|</span>
+          STORED LOCALLY
+        </div>
+        <div class="panel__search">
+          <label for="quest-search">SEARCH QUESTS</label>
+          <input id="quest-search" type="search" placeholder="Type to filter quests..." autocomplete="off" />
+        </div>
+        <div class="panel__progress" aria-hidden="true">
+          <div class="panel__progress-label">OVERALL PROGRESS</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="quest-overall-fill"></div>
+          </div>
+          <div class="progress-text" id="quest-overall-text">0 / 0 COMPLETE</div>
+        </div>
+        <div class="panel__body">
+          <div class="quest-groups" id="quest-groups"></div>
+        </div>
+      </div>
+
+      <div class="terminal__panel" aria-label="Locations checklist" id="locations-checklist" data-tab-panel="locations">
+        <div class="panel__title">LOCATIONS CHECKLIST</div>
+        <div class="panel__meta">
+          STATUS: LOCATIONS LOADED
+        </div>
+        <div class="panel__progress" aria-hidden="true">
+          <div class="panel__progress-label">OVERALL PROGRESS</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="location-overall-fill"></div>
+          </div>
+          <div class="progress-text" id="location-overall-text">0 / 0 COMPLETE</div>
+        </div>
+        <div class="panel__search">
+          <label for="location-search">SEARCH LOCATIONS</label>
+          <input id="location-search" type="search" placeholder="Type to filter locations..." autocomplete="off" />
+        </div>
+        <div class="panel__body">
+          <div class="location-groups" id="location-groups"></div>
+        </div>
+      </div>
+
+      <div class="terminal__panel" aria-label="Event challenges" id="events-panel" data-tab-panel="events">
+        <div class="panel__title">EVENT CHALLENGES</div>
+        <div class="panel__timer panel__timer--inline">
+          <span class="panel__timer-label">EVENT RESET IN</span>
+          <span class="panel__timer-value" id="events-reset" aria-live="polite">--:--:--</span>
+        </div>
+        <div class="panel__meta">
+          SOURCE: NUKA KNIGHTS (UNOFFICIAL)
+          <span class="panel__meta-divider">|</span>
+          <span id="events-updated">LAST SYNC: --</span>
+        </div>
+        <div class="panel__progress" aria-hidden="true">
+          <div class="panel__progress-label">PROGRESS</div>
+          <div class="progress-track">
+            <div class="progress-fill" id="events-progress-fill"></div>
+          </div>
+          <div class="progress-text" id="events-progress-text">0 / 0 COMPLETE</div>
+        </div>
+        <div class="panel__body">
+          <p class="panel__placeholder" id="events-placeholder">Loading event challenges...</p>
+          <ul class="daily-list" id="events-list" aria-live="polite"></ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="terminal__footer">
+      <div>LOG: DAILY CHECKLIST LOADED</div>
+      <div>INPUT: ENABLED</div>
+    </footer>
+  </main>
+
+  <script>
+    const dailyPanelResetLabel = document.getElementById('daily-panel-reset');
+    const dailyList = document.getElementById('daily-list');
+    const dailyPlaceholder = document.getElementById('daily-placeholder');
+    const dailyUpdated = document.getElementById('daily-updated');
+    const dailyProgressFill = document.getElementById('daily-progress-fill');
+    const dailyProgressText = document.getElementById('daily-progress-text');
+    const weeklyList = document.getElementById('weekly-list');
+    const weeklyPlaceholder = document.getElementById('weekly-placeholder');
+    const weeklyUpdated = document.getElementById('weekly-updated');
+    const weeklyProgressFill = document.getElementById('weekly-progress-fill');
+    const weeklyProgressText = document.getElementById('weekly-progress-text');
+    const weeklyResetLabel = document.getElementById('weekly-reset');
+    const questList = document.getElementById('quest-list');
+    const questProgressFill = document.getElementById('quest-progress-fill');
+    const questProgressText = document.getElementById('quest-progress-text');
+    const questGroups = document.getElementById('quest-groups');
+    const questOverallFill = document.getElementById('quest-overall-fill');
+    const questOverallText = document.getElementById('quest-overall-text');
+    const locationGroups = document.getElementById('location-groups');
+    const questSearch = document.getElementById('quest-search');
+    const locationSearch = document.getElementById('location-search');
+    const locationOverallFill = document.getElementById('location-overall-fill');
+    const locationOverallText = document.getElementById('location-overall-text');
+    const eventsList = document.getElementById('events-list');
+    const eventsPlaceholder = document.getElementById('events-placeholder');
+    const eventsUpdated = document.getElementById('events-updated');
+    const eventsProgressFill = document.getElementById('events-progress-fill');
+    const eventsProgressText = document.getElementById('events-progress-text');
+    const eventsResetLabel = document.getElementById('events-reset');
+    const fallout1stToggle = document.getElementById('fallout1st-toggle');
+
+    const DAILY_RESET_UTC = { hour: 16, minute: 0, second: 0 }; // 11:00 AM ET
+    const WEEKLY_RESET_UTC = { day: 2, hour: 16, minute: 0, second: 0 }; // Tuesday 11:00 AM ET
+    const DAILY_SOURCE = 'https://r.jina.ai/http://nukaknights.com/en/';
+    const HOVER_SOUND_URL = 'https://www.dropbox.com/scl/fi/j9kew0oilu67y6rngmkfh/UI_PipBoy_Map_Rollover_01.mp3?rlkey=50tp15v0a4szgnqk4qcisa9yb&st=eggj4zom&raw=1';
+    const DAILY_QUESTS = [
+      'A Better Tomorrow',
+      "A Refugee's Guide",
+      'Big Game Hunter',
+      'Buried with Honor',
+      'Code Blue',
+      'Cop a Squatter',
+      'Costa Business',
+      'Dross Toss',
+      'Ecological Balance',
+      'Heart of the Enemy',
+      'Idle Explosives',
+      'Lucky Mucker',
+      'Mistaken Identity',
+      'Mutual Aid',
+      'Pass the Buck',
+      'Play Time',
+      'Queen of the Hunt',
+      'Recipe for Success',
+      'Someone to Talk To',
+      'Strange Brew',
+      'Target Rich Environment',
+      'The Chow Line',
+      'Thrill of the Grill',
+      'Trick or Treat?',
+      'Waste Not'
+    ];
+
+    const QUEST_GROUPS = [
+      {
+        id: 'base-game-main',
+        title: 'BASE GAME — MAIN QUESTS',
+        storagePrefix: 'questBaseMain',
+        includeInOverall: true,
+        items: [
+          'Overseer: Reclamation Day',
+          'Overseer: First Contact',
+          'Responders: Thirst Things First',
+          'Responders: Second Helpings',
+          'Responders: Final Departure',
+          'Responders: An Ounce of Prevention',
+          'Responders: Into the Fire',
+          'Responders: Runner\'s High',
+          'Responders: The Missing Link',
+          'Raiders: Signal Strength',
+          'Raiders: Flavors of Mayhem',
+          'Raiders: Key to the Past',
+          'Free States: Early Warnings',
+          'Free States: Reassembly Required',
+          'Free States: Coming to Fruition',
+          'Brotherhood of Steel: Defiance Has Fallen',
+          'Brotherhood of Steel: Recruitment Blues',
+          'Brotherhood of Steel: Back to Basic',
+          'Brotherhood of Steel: Marksmanship Course',
+          'Brotherhood of Steel: Agility Course',
+          'Brotherhood of Steel: Patriotism Training',
+          'Brotherhood of Steel: Live Fire Training Exercise',
+          'Brotherhood of Steel: Belly of the Beast',
+          'Enclave: Uncle Sam',
+          'Enclave: Bunker Buster',
+          'Enclave: One of Us',
+          'Enclave: Officer on Deck',
+          'Enclave: I Am Become Death',
+          'Enclave: Hide and Seek and Destroy'
+        ]
+      },
+      {
+        id: 'base-game-side',
+        title: 'BASE GAME — SIDE QUESTS',
+        storagePrefix: 'questBaseSide',
+        includeInOverall: true,
+        items: [
+          'An Organic Solution',
+          'Bureau of Tourism',
+          'Falsely Accused',
+          'Cold Case',
+          'Mayor for a Day',
+          'Miner Miracles',
+          "Overseer's Mission",
+          'Personal Matters',
+          'Safe for Work',
+          'Tentative Plans',
+          'The Motherlode',
+          'Tracking Unknowns',
+          'Order of Mysteries: Into the Mystery',
+          'Order of Mysteries: Initiate of Mysteries',
+          'Order of Mysteries: Novice of Mysteries',
+          'Order of Mysteries: Chasing Shadows',
+          'Order of Mysteries: Forging a Legend',
+          'Order of Mysteries: Prototypical Problems',
+          'Order of Mysteries: Seeker of Mysteries',
+          'Order of Mysteries: The Mistress of Mystery'
+        ]
+      },
+      {
+        id: 'wild-appalachia',
+        title: 'WILD APPALACHIA',
+        storagePrefix: 'questWildAppalachia',
+        includeInOverall: true,
+        items: [
+          'Sheepsquatch: Lying Lowe',
+          'Sheepsquatch: Baa Baa Black Sheep',
+          'Sheepsquatch: The Lowe-Down',
+          'Sheepsquatch: Wolf in Sheep\'s Clothing',
+          'That Sinking Feeling',
+          'Unsolved: Best of Intentions',
+          'Unsolved: Death and Taxidermy',
+          'Unsolved: Picnic Panic',
+          'Unsolved: Tracking Terror',
+          'Waste Management',
+          'Wasted on Nukashine',
+          'Pioneer Scouts: Bucket List',
+          'Pioneer Scouts: The Order of the Tadpole',
+          'Pioneer Scouts: Tadpole Archery Test',
+          'Pioneer Scouts: Tadpole Athletics Test',
+          'Pioneer Scouts: Tadpole Swimming Test',
+          'Pioneer Scouts: Possum Junior Roboticist Tour'
+        ]
+      },
+      {
+        id: 'wastelanders-main',
+        title: 'WASTELANDERS',
+        storagePrefix: 'questWastelandersMain',
+        includeInOverall: true,
+        items: [
+          'Overseer: The New Arrivals',
+          'Overseer: Overseer, Overseen',
+          'The Wayward: Wayward Souls',
+          'The Wayward: Hunter for Hire',
+          'The Wayward: Strength in Numbers',
+          'The Wayward: The Elusive Crane',
+          'Foundation: Here to Stay',
+          'Foundation: Trade Secrets',
+          'Foundation: Invisible Ties',
+          'Foundation: Duty Calls',
+          'Foundation: Siding with Foundation',
+          'Foundation: Division of Wealth',
+          'Foundation: All That Glitters',
+          'Foundation: Secrets Revealed',
+          'Crater Raiders: Strange Bedfellows',
+          'Crater Raiders: Cheating Death',
+          'Crater Raiders: Fun and Games',
+          'Crater Raiders: The Ol\' Weston Shuffle',
+          'Crater Raiders: Siding with Crater',
+          'Crater Raiders: From Russia With Lev',
+          'Crater Raiders: Buried Treasure',
+          'Crater Raiders: Secrets Revealed'
+        ]
+      },
+      {
+        id: 'wastelanders-allies',
+        title: 'WASTELANDERS ALLIES',
+        storagePrefix: 'questWastelandersAllies',
+        includeInOverall: true,
+        items: [
+          'Beckett: Narrow Escape',
+          'Beckett: An Eagle Flies Free',
+          'Beckett: Dirty Little Secrets',
+          'Beckett: Exit Sage Left',
+          'Beckett: Out of Key',
+          'Beckett: Traitor\'s Demise',
+          'Beckett: Supply and Demand',
+          'Beckett: Spilling Blood',
+          'Beckett: Pet Peeve',
+          'Beckett: Shooting Star',
+          'Beckett: Bot of Gold',
+          'Beckett: Sibling Piracy',
+          'Beckett: Needs of the Many',
+          'Beckett: Eye for an Eye',
+          'Beckett: Thicker Than Water',
+          'Sofia Daguerre: Crash Landing',
+          'Sofia Daguerre: The Woman Who Fell to Earth',
+          'Sofia Daguerre: One Small Step',
+          'Sofia Daguerre: In Case of Emergency',
+          'Sofia Daguerre: Bring Home the Beacon',
+          'Sofia Daguerre: The Universe Conspires',
+          'Sofia Daguerre: Hope Remains',
+          'Sofia Daguerre: Search and Destroy',
+          'Sofia Daguerre: Heavy Eyes',
+          'Sofia Daguerre: Patently False',
+          'Sofia Daguerre: Privacy Violation',
+          'Sofia Daguerre: Contractually Obfuscated',
+          'Sofia Daguerre: Boot Camp',
+          'Sofia Daguerre: Past Expiration',
+          'Sofia Daguerre: No Brainer',
+          'Sofia Daguerre: Calling Long Distance',
+          'Sofia Daguerre: Who Sat Down Beside Her',
+          'Sofia Daguerre: Lab Rat',
+          'Sofia Daguerre: Mission Out-of-Control'
+        ]
+      },
+      {
+        id: 'legendary-run',
+        title: 'THE LEGENDARY RUN',
+        storagePrefix: 'questLegendaryRun',
+        includeInOverall: false,
+        items: [
+          'Something Sentimental'
+        ]
+      },
+      {
+        id: 'one-wasteland',
+        title: 'ONE WASTELAND FOR ALL — SIDE QUESTS',
+        storagePrefix: 'questOneWastelandSide',
+        includeInOverall: true,
+        items: [
+          'Breaking Radio Silence'
+        ]
+      },
+      {
+        id: 'steel-dawn-main',
+        title: 'STEEL DAWN',
+        storagePrefix: 'questSteelDawnMain',
+        includeInOverall: true,
+        items: [
+          'Welcome to the Neighborhood',
+          'Forging Trust',
+          'Mother of Invention',
+          'Field Testing',
+          'Disarming Discovery',
+          'Property Rights',
+          'Supplying Demands',
+          'Over and Out',
+          'The Best Defense'
+        ]
+      },
+      {
+        id: 'steel-dawn-side',
+        title: 'STEEL DAWN — SIDE QUESTS',
+        storagePrefix: 'questSteelDawnSide',
+        includeInOverall: true,
+        items: [
+          'Home Expansion'
+        ]
+      },
+      {
+        id: 'steel-reign-main',
+        title: 'STEEL REIGN',
+        storagePrefix: 'questSteelReignMain',
+        includeInOverall: true,
+        items: [
+          "A Knight's Penance",
+          'Missing Persons',
+          'Out of the Blue',
+          'A Satisfied Conscience',
+          'The Catalyst'
+        ]
+      },
+      {
+        id: 'the-pitt',
+        title: 'THE PITT',
+        storagePrefix: 'questThePitt',
+        includeInOverall: false,
+        items: [
+          'Responders Reborn',
+          'Union Dues',
+          'From Ashes to Fire'
+        ]
+      },
+      {
+        id: 'nuka-world-on-tour',
+        title: 'NUKA-WORLD ON TOUR',
+        storagePrefix: 'questNukaWorldSide',
+        includeInOverall: false,
+        items: [
+          'Spin the Wheel',
+          'Seismic Activity',
+          'Tunnel of Love',
+          'Most Wanted',
+          'Wild West Showdown'
+        ]
+      },
+      {
+        id: 'once-in-a-blue-moon',
+        title: 'ONCE IN A BLUE MOON',
+        storagePrefix: 'questOnceInABlueMoon',
+        includeInOverall: true,
+        items: [
+          'Costa Business: Carver',
+          'Costa Business: Eugenie',
+          'Costa Business: Herschel',
+          'Costa Business: Kieran',
+          'Costa Business: Libby',
+          'Costa Business: Rudy',
+          'Costa Business: Vera',
+          'Protocol Adonais'
+        ]
+      },
+      {
+        id: 'atlantic-city-main',
+        title: 'ATLANTIC CITY',
+        storagePrefix: 'questAtlanticCityMain',
+        includeInOverall: true,
+        items: [
+          'Opportunity Knocking',
+          "All the World's a Stage",
+          'Honor Bound',
+          'Sins of the Father'
+        ]
+      },
+      {
+        id: 'atlantic-city-side',
+        title: 'ATLANTIC CITY — SIDE QUESTS',
+        storagePrefix: 'questAtlanticCitySide',
+        includeInOverall: true,
+        items: [
+          'Custodial Compulsions',
+          'Regent of the Dead'
+        ]
+      },
+      {
+        id: 'atlantic-city-expeditions',
+        title: 'ATLANTIC CITY — EXPEDITIONS',
+        storagePrefix: 'questAtlanticCityExpeditions',
+        includeInOverall: false,
+        items: [
+          'Tax Evasion',
+          'The Most Sensational Game',
+          'The Human Condition'
+        ]
+      },
+      {
+        id: 'skyline-valley-main',
+        title: 'SKYLINE VALLEY',
+        storagePrefix: 'questSkylineValleyMain',
+        includeInOverall: true,
+        items: [
+          'An Unlikely Invitation',
+          'Into Lands Unknown',
+          'The Calm Before',
+          'Between The Lines',
+          'Housekeeping for Hire',
+          'Seeking Shelter',
+          'Oldest Trick in the Book',
+          'The Powerhouse of the Cell',
+          'Double-Crossed Wires',
+          'Gathering Clouds',
+          'The Eye of the Storm'
+        ]
+      },
+      {
+        id: 'milepost-zero',
+        title: 'MILEPOST ZERO',
+        storagePrefix: 'questMilepostZeroSide',
+        includeInOverall: true,
+        items: [
+          'A Bump in the Road',
+          'Unconventional Weaponry'
+        ]
+      },
+      {
+        id: 'ghoul-within-main',
+        title: 'GHOUL WITHIN',
+        storagePrefix: 'questGhoulWithinMain',
+        includeInOverall: true,
+        items: [
+          'Leap of Faith',
+          'A Fresh Pair of Genes'
+        ]
+      },
+      {
+        id: 'gone-fission',
+        title: 'GONE FISSION',
+        storagePrefix: 'questGoneFissionSide',
+        includeInOverall: true,
+        items: [
+          'Casting Off'
+        ]
+      },
+      {
+        id: 'burning-springs-main',
+        title: 'BURNING SPRINGS',
+        storagePrefix: 'questBurningSpringsMain',
+        includeInOverall: true,
+        items: [
+          'Welcoming Committee',
+          'Might Makes Right',
+          'Insurrection',
+          'When the Rust Settles'
+        ]
+      },
+      {
+        id: 'burning-springs',
+        title: 'BURNING SPRINGS — SIDE QUESTS',
+        storagePrefix: 'questBurningSpringsSide',
+        includeInOverall: true,
+        items: [
+          'Dirty Laundry',
+          'Bounty Hunting: Grunt Hunt'
+        ]
+      }
+    ];
+
+    const LOCATION_GROUPS = [
+      {
+        id: 'the-forest',
+        title: 'THE FOREST',
+        storagePrefix: 'locTheForest',
+        items: [
+          'Aaronholt homestead',
+          'Alpine River Cabins',
+          'Anchor Farm',
+          'Archery set',
+          'Arktos Pharma',
+          'Arktos Pharma biome lab',
+          "Big Al's Tattoo Parlor",
+          'Billboard junk camp',
+          'Billings homestead',
+          'Biplane crash (Anchor farm)',
+          'Birdhouse ridge',
+          "Birdwatcher's platform",
+          'Black Mountain Ordnance Works',
+          "Bleeding Kate's Grindhouse",
+          'Blood Eagle camp',
+          'Blue Ridge Bunkhouse',
+          'Bolton Greens',
+          'Burdette Manor',
+          'Camp Adams',
+          'Camp Adams lookout',
+          'Camp McClintock',
+          'Charleston landfill',
+          'Clancy Manor',
+          'Covered bridge (Fallout 76)',
+          'Cow Spots Creamery',
+          'Cultist totem',
+          "Darling sister's lab",
+          'Deathclaw Island',
+          'Deserted mine',
+          'Duncan & Duncan Robotics',
+          'East Kanawha lookout',
+          'Eta Psi house',
+          'Flatwoods lookout',
+          'Flatwoods River',
+          'Forward Station Tango',
+          'Friendly',
+          'Fujiniya Intelligence Base',
+          'Game of Thrones',
+          'Gauley Mine',
+          'Gilman lumber mill',
+          'Gorge Junkyard',
+          'Green Country Lodge',
+          "Greg's Mine Supply",
+          'Groves family cabin',
+          'Hillfolk Hotdogs',
+          'Holdingford homestead',
+          "Horizon's Rest",
+          'Hornwright summer villa',
+          "Hunter's Ridge",
+          "Huntsman's Glade",
+          'Isolated cabin',
+          "J. Schram's house",
+          'Kanawha County Cemetery',
+          'Kanawha Nuka-Cola plant',
+          'Kanawha River',
+          "Lady Janet's Soft Serve",
+          'Lakeside Cabins',
+          'Landview Lighthouse',
+          'Lewis & Sons Farming Supply',
+          'Limousine crash',
+          'Marigold Pavilion',
+          "Moonshiner's shack",
+          'Morgantown Airport terminal',
+          'Morgantown High School',
+          'Motherlode Acquisition Facility',
+          'Mothman Museum',
+          'New Gad',
+          'New River',
+          'New River Gorge Bridge',
+          'New River Gorge Resort',
+          'New River Gorge ropes course',
+          'North Kanawha lookout',
+          'North Road Bridge',
+          'Ohio River',
+          'Ohio River Adventures',
+          'Organ Cave',
+          'Orwell Orchards',
+          'Overlook cabin',
+          "Overseer's camp",
+          "Overseer's home",
+          'Party time diners',
+          'Portside Pub',
+          'Poseidon Energy Plant WV-06',
+          'Poseidon Energy Plant yard',
+          'Poseidon power substation PX-01',
+          'Poseidon power substation PX-02',
+          'Prehistoric bones camp',
+          "Priblos' Curios",
+          'Red Rocket (Flatwoods)',
+          'Red Rocket (Giant Teapot)',
+          'Red Rocket (Morgantown)',
+          'Relay tower EM-B1-27',
+          'Relay tower HN-B1-12',
+          'Riverside Manor',
+          'RobCo Auto-Cache 001',
+          'Sacrifice altar',
+          "Safecracker's shack",
+          "Settler's Ridge",
+          'Shadowbreeze Apartments',
+          'Silva homestead',
+          "Slocum's Joe (Fallout 76)",
+          'Soapy skeleton',
+          'South Road Bridge',
+          'Sugarmaple',
+          'Summersville',
+          'Summersville Dam',
+          'Summersville Docks',
+          'Summersville Lake',
+          'Sunshine Meadows industrial farm',
+          'Teddy bear house',
+          'The Coop',
+          'The Crosshair',
+          'The Deep',
+          'The Giant Teapot',
+          'The Kill Box',
+          'The Nukashine',
+          'The Pigsty',
+          'The Wayward',
+          'Torrance House',
+          'Transmission station 1AT-U03',
+          'Twin Pine Cabins',
+          'Tygart water treatment',
+          'Tyler County Dirt Track',
+          'Tyler County Fairgrounds',
+          'Vault 63 crash site',
+          'Vault-Tec Agricultural Research Center',
+          'Wade Airport',
+          'West Charleston Bridge',
+          'White Powder Winter Sports',
+          "Wilson Brother's Auto Repair",
+          'Wixon homestead',
+          'WV Lumber Co.'
+        ]
+      },
+      {
+        id: 'toxic-valley',
+        title: 'TOXIC VALLEY',
+        storagePrefix: 'locToxicValley',
+        items: [
+          'Becker farm',
+          'Black Bear Lodge',
+          'Carleton Mine',
+          'Clarksburg',
+          'Clarksburg Shooting Club',
+          'Cobbleton farm',
+          'Colonel Kelly monument',
+          'Crashed biplane (Graninger farm)',
+          'Crater watchstation',
+          'Eastern Regional Penitentiary',
+          'Grafton Dam',
+          'Grafton Pawn Shop',
+          'Grafton Steel yard',
+          'Graninger farm',
+          'Hemlock Holes',
+          'Hemlock Holes maintenance',
+          'Hilltop pylon camp',
+          'Kiddie Corner Cabins',
+          'Knife Edge',
+          "Old Pete's End",
+          'Philippi',
+          'Philippi Battlefield Cemetery',
+          'Pioneer Scout camp',
+          'Pioneer Scout lookout',
+          'Poseidon power substation PX-03',
+          "Prickett's Fort",
+          'Smith farm',
+          "Surly's shack",
+          'The Core',
+          'The Crater',
+          'The Crater war room',
+          'Toxic dried lakebed',
+          'Toxic pond and wreckage',
+          'Tygart Valley River',
+          "Wavy Willard's Water Park",
+          'Willard Corporate Housing',
+          'Woods Estate'
+        ]
+      },
+      {
+        id: 'ash-heap',
+        title: 'ASH HEAP',
+        storagePrefix: 'locAshHeap',
+        items: [
+          'Abandoned mine shaft 1',
+          'Abandoned mine shaft 2',
+          'Abandoned mine shaft 3',
+          'Abandoned mine shaft 4',
+          'Abandoned mine shaft 5',
+          'Abandoned mine shaft 6',
+          'Abandoned mine shaft Elaine',
+          'Abandoned mine site Kittery',
+          'AMS testing site',
+          'Ash Heap marketplace',
+          'Bastion Park',
+          "Beast of Beckley's den",
+          'Belching Betty',
+          'Big Bend Tunnel',
+          'Big Bend Tunnel campsite',
+          "Big Papa Moe's Lip Smackin' Sandwich Shack",
+          'Brim Quarry',
+          'Camden Park',
+          'Chem and hoop shack',
+          'Dusty Heap',
+          'Garrahan Estate',
+          'Garrahan Mining headquarters',
+          'Gleaming Depths (location)',
+          'Hornwright air purifier site 01',
+          'Hornwright air purifier site 02',
+          'Hornwright air purifier site 03',
+          'Hornwright air purifier site 04',
+          'Hornwright Estate',
+          'Hornwright testing site 2',
+          'Hornwright testing site 3',
+          'Hornwright testing site 4',
+          "Janelle's camp",
+          "Joe's Spuckies (Fallout 76)",
+          'Lake Reynolds',
+          'Lewisburg',
+          'Lewisburg Station',
+          'Mega Mansion',
+          'Mount Blair',
+          'Mount Blair coffee shack',
+          'Mount Blair Trainyard',
+          "Nicholson's End",
+          'Nuka Launcher',
+          'Nuka-Cade (Fallout 76)',
+          'Nuka-World on Tour (location)',
+          'Old storehouse',
+          'Pleasant Hills Cemetery',
+          'Pylon ambush site',
+          'Red Rocket filling station',
+          'Relay tower HG-B7-09',
+          'Riverside cottage',
+          'Rollins Labor Camp',
+          'Sludge trailer',
+          'Slurry Run',
+          'Striker Row',
+          'The Burning Mine',
+          'The Rusty Pick',
+          'The Sludge Works',
+          'Tunnel of Love (location)',
+          'Unfinished mansion',
+          'Van Lowe Taxidermy',
+          'Welch',
+          'Welch Station',
+          "Widow's Perch"
+        ]
+      },
+      {
+        id: 'savage-divide',
+        title: 'SAVAGE DIVIDE',
+        storagePrefix: 'locSavageDivide',
+        items: [
+          '98 NAR Regional',
+          'Allegheny Mountains',
+          'Ammo dump',
+          'Autumn Acre cabin',
+          'Bailey family cabin',
+          'Barrel burial',
+          'Beckwith farm',
+          'Big Bend Tunnel west',
+          "Big Fred's BBQ Shack",
+          'Blackwater Mine',
+          'Brotherhood graveyard',
+          'Carhenge (Fallout 76)',
+          'Central Mountain lookout',
+          'Clifftop vista cabin',
+          'Cliffwatch',
+          'Converted munitions factory',
+          'Crossroad',
+          'Dent & Sons Construction',
+          "Devil's Alley",
+          "Devil's Backbone",
+          "Dr. Eddie Harrison's house",
+          'East Mountain lookout',
+          'Emmett Mountain disposal site',
+          'Emmett Mountain side tunnel',
+          'End of the road',
+          'Explosives shrine',
+          'Federal Disposal Field HZ-21',
+          'Foundation',
+          'Foundation Outpost',
+          'Foundation supply room',
+          "Founder's Hall",
+          "Gardener's shack",
+          'Glamping site',
+          "Gnomes' allotment",
+          'Halloween fright farm',
+          'Halloween horror hamlet',
+          'Hillside cavern',
+          'Hopewell Cave',
+          'Hopewell Cave cemetery',
+          'Hornwright Estate',
+          'Huntersville',
+          'Ingram Mansion',
+          "Investigator's cabin",
+          "Jaggy's Crag",
+          "Johnson's Acre",
+          'Lake Eloise',
+          'Lucky Hole Mine',
+          'Metal Dome',
+          'Middle Mountain Cabins',
+          'Middle Mountain Pitstop',
+          'Miners Monument',
+          'Mole miner network',
+          'Monongah Mine',
+          'Monongah overlook',
+          'Monongah power substation MZ-01',
+          'Monongah power substation MZ-02',
+          'Monongah power substation MZ-03',
+          'Monongahela National Forest',
+          'Monorail elevator',
+          "Moonshiner's overlook",
+          'Motherlode Acquisition Facility',
+          'Mountainside Bed & Breakfast',
+          'Mountainside cabin',
+          'Mysterious Guidestones',
+          'National Isolated Radio Array',
+          'National Radio Astronomy Research Center',
+          'New Appalachian Central trainyard',
+          'North Cutthroat camp',
+          'North Mountain lookout',
+          'North Mountain oratory camp',
+          'Old Danielson cabin',
+          'Palace of the Winding Path',
+          'Pleasant Valley cabins',
+          'Pleasant Valley Ski Resort',
+          'Pleasant Valley Station',
+          'Point Repose',
+          'Pumpkin House',
+          'R&G Processing Services',
+          'R&G Station',
+          'Radiant Hills',
+          'Raider outhouse and moat',
+          'Red Rocket (Seneca Rocks)',
+          'Red Rocket Mega Stop',
+          'Relay tower DP-B5-21',
+          'Relay tower EL-B1-02',
+          'Relay tower LW-B1-22',
+          'Ripper Alley',
+          "Rosalynn Jeffries' shrine",
+          "Safe 'n Clean Disposal",
+          'Scenic overlook',
+          'Secluded cave',
+          'Seneca Gang camp',
+          'Seneca Rocks',
+          'Seneca Rocks Visitor Center',
+          'Site Alpha',
+          'Site Bravo',
+          'Site Charlie',
+          'Ski lift',
+          'Ski lift base camp',
+          'Skullbone Vantage',
+          "Solomon's lower pond",
+          "Solomon's pond",
+          'Sons of Dane compound',
+          'South Cutthroat camp',
+          'South Mountain lookout',
+          'South Mountain nuke crater',
+          'Spruce Knob',
+          'Spruce Knob Boat Rental',
+          'Spruce Knob Campground',
+          'Spruce Knob Channels',
+          'Spruce Knob Lake',
+          'Sugar Grove',
+          'Sunnytop Ski Lanes',
+          'Sunnytop Ski Lanes base lodge',
+          'Sunnytop Station',
+          'Sylvie & Sons logging camp',
+          'The Bounty',
+          'The Bullengrube',
+          'The Deep',
+          'The Freak Show',
+          'The Sludge Hole',
+          'The Vantage',
+          'The Whitespring Station',
+          'Thomas farm',
+          'Tightrope',
+          'Top of the World',
+          "Toxic Larry's Meat 'n Go",
+          "Trapper's camp",
+          'Twin Lakes',
+          'Uncanny Caverns',
+          'US-13C Bivouac',
+          'Walking trail picnic area and vista',
+          'Wendigo cave',
+          'West Tek research center (Fallout 76)',
+          'Whitespring lookout',
+          'Wild Wolf homestead',
+          "Yellow Sandy's still"
+        ]
+      },
+      {
+        id: 'the-mire',
+        title: 'THE MIRE',
+        storagePrefix: 'locTheMire',
+        items: [
+          'Abandoned bunker',
+          'Abandoned waste dump',
+          "Abbie's bunker",
+          'Aquatic outhouse',
+          'Berkeley Springs',
+          'Berkeley Springs Station',
+          'Berkeley Springs West',
+          'Bicycle graveyard',
+          "Big B's Rest Stop",
+          'Big Maw',
+          "Blake's Offering",
+          "Braxson's Quality Medical Supplies",
+          'Camp Venture',
+          'Carson family bunker',
+          'Cliffwalk Track',
+          'Crashed plane',
+          'Crevasse Dam',
+          'Dabney homestead',
+          "Dagger's Den",
+          'Delano Grange',
+          'Dolly Sods Campground',
+          'Dolly Sods lookout',
+          'Dolly Sods Wilderness',
+          'Dolly Sods Wilderness ranger station',
+          'Dyer Chemical',
+          'East Ridge lookout',
+          "Ella Ames' bunker",
+          'Excelsior Model Home',
+          'Faraway treehouse',
+          "Fisherman's Rest",
+          "Freddy Fear's basement",
+          "Freddy Fear's House of Scares",
+          'Gnarled shallows',
+          'Gulper lagoon',
+          'Harpers Ferry',
+          'Harpers Ferry Armory',
+          'Harpers Ferry Clinic',
+          'Harpers Ferry Trainyard',
+          'Harrison Heights',
+          'Haven Church',
+          "Hawke's Refuge",
+          'Highland Marsh',
+          "Hunter's shack",
+          'KMAX Transmission',
+          "Mechanic's metal shack",
+          'Middle Mountain Lake',
+          "Mire's Eye",
+          'Monongahela National Forest',
+          'Mosstown',
+          'Moth-Home',
+          "Prepper's pylon paradise",
+          "Raleigh Clay's bunker",
+          'Ransacked bunker',
+          'Red Rocket (Valley Galleria)',
+          'River treehouse',
+          "Sam Blackwell's bunker",
+          "Scoot's shack",
+          "Settler cottage and bunker",
+          'Shenandoah River',
+          'Skeleton raft',
+          'Southern Belle Motel',
+          'Southhampton Estate',
+          "Sunday Brothers' cabin",
+          'Sunken church',
+          'Tanagra Town',
+          'The Burrows',
+          'The Retreat',
+          'Thunder Mountain Power Plant',
+          'Thunder Mountain Power Plant yard',
+          'Thunder Mountain substation TM-01',
+          'Treehouse Village',
+          'Treetops',
+          'Under the I-65 bridge',
+          'Valley Galleria'
+        ]
+      },
+      {
+        id: 'cranberry-bog',
+        title: 'CRANBERRY BOG',
+        storagePrefix: 'locCranberryBog',
+        items: [
+          'Abandoned Bog Town',
+          "Adelaide's Diner",
+          'Appalachian Antiques',
+          'Big Bend Tunnel',
+          'Big Bend Tunnel east',
+          'Bog channel shelter',
+          "Bootlegger's shack",
+          'Cranberry Glade',
+          'Creekside sundew grove',
+          'Crimson Prospect',
+          'Drop Site C2',
+          'Drop Site G3',
+          'Drop Site V9',
+          'Firebase Hancock',
+          'Firebase LT',
+          'Firebase Major',
+          'Fissure site Prime',
+          'Flooded trainyard',
+          'Fort Defiance',
+          'Forward Station Alpha',
+          'Forward Station Delta',
+          'Giese Berry Bog',
+          'Glassed cavern',
+          'Kanawha National Park',
+          'Kerwood Mine',
+          'Lost home',
+          "Mac's farm",
+          'Marsh cottage',
+          'NAR repair yard',
+          'Neighboring homesteads',
+          'Old Mold Quarry',
+          'Overgrown sundew grove',
+          'Pylon V-13',
+          'Quarry X3',
+          'Ranger district office',
+          'Ranger lookout',
+          'Red Rocket (Abandoned Bog Town)',
+          'RobCo Research Center',
+          'Sacramental Glade',
+          'Soggy Bottom',
+          'Sparse sundew grove',
+          'Sunrise Field',
+          'Superior Sunset Farm',
+          'Survey camp Alpha',
+          "The General's Steakhouse",
+          'The Thorn (Fallout 76)',
+          'Thunder Mountain substation TM-02',
+          'Veiled sundew grove'
+        ]
+      },
+      {
+        id: 'skyline-valley',
+        title: 'SKYLINE VALLEY',
+        storagePrefix: 'locSkylineValley',
+        items: [
+          'Abandoned convoy',
+          'Big Meadows gas well',
+          'Bunker and beehive',
+          'Camp Liberty',
+          'Dark Hollow Manor',
+          'Grindstone Arch',
+          'Hawksbill weather station',
+          'Hemlock Springs dump',
+          'High Knob Lookout',
+          'Ice cream rest stop',
+          'Makeout Point',
+          'Marys Rock Tunnel',
+          'Milepost Zero (location)',
+          'Naked Creek',
+          'Old Crimora Mines',
+          'Old Rag Lookout',
+          'Ranger station bunker',
+          'Rapidan Camp',
+          'Rapidan Creek',
+          'Research Site Bavaria',
+          'Research Site Rhineland',
+          'Research Site Saxony',
+          'Shenandoah National Park',
+          'Shenandoah Visitor Center',
+          'Shining Creek',
+          'Shining Creek Cavern',
+          'Skyline Drive',
+          'Skyline Drive: Entrance',
+          'Slumber Mill Motel',
+          'South River',
+          'South River Bridge',
+          'Stony Man Lookout',
+          "Susan's cabin",
+          'The Brown House',
+          'The Trading Post',
+          'Three Ponds',
+          'Thunder Mountain substation TM-03',
+          'Trail hill overlook',
+          'Treetop lookout',
+          'Vault 63 crash site'
+        ]
+      },
+      {
+        id: 'burning-springs',
+        title: 'BURNING SPRINGS',
+        storagePrefix: 'locBurningSprings',
+        items: [
+          'Abraxodyne Chemical power substation',
+          'Abraxodyne office',
+          'Albany',
+          'Ash Cave',
+          'Athens',
+          'Athens Armory',
+          'Athens Lunatic Asylum',
+          "Big Muskie's Bucket",
+          'Checkpoint Canyon',
+          'Dino Peaks Mini Golf',
+          'Dow Lake Watershed',
+          'Enclave vertibird crash site',
+          "Executive's apartment",
+          'Fort Steuben',
+          'Hamley Run camp',
+          'Highway 35 water tower',
+          'Highway Town',
+          'Hocking Hills Little League Field',
+          'Hocking Hills State Park',
+          'Hocking Hills Station',
+          'Honey well apiary',
+          'Jackson Junkyard',
+          'Last Resort',
+          'Meadow Breeze Storage Depot',
+          'Moonvale Tunnel',
+          'Pebbles the Cat Museum',
+          'Prepper storage bunkers',
+          'Prospect Hill (Burning Springs)',
+          'Railroad service yard',
+          'Route 33 traffic jam',
+          'Sand Fork Lumber',
+          "Sandy's Sock Hop",
+          'Shade Hill Church',
+          'South Ohio Evacuation Center',
+          'Starlight Drive-in (Burning Springs)',
+          'Strouds Run State Park',
+          'Super Duper Mart (Burning Springs)',
+          'The Buckeye Diner',
+          'The Chop Shop (Burning Springs)',
+          'The Rust Kingdom (location)',
+          'Tycoon Lake',
+          "Vladimir's camp",
+          'Westbrook horse ranch',
+          'World of Corn'
+        ]
+      }
+    ];
+
+    function getTodayReset(now) {
+      return new Date(Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        DAILY_RESET_UTC.hour,
+        DAILY_RESET_UTC.minute,
+        DAILY_RESET_UTC.second
+      ));
+    }
+
+    function getNextReset(now) {
+      const next = getTodayReset(now);
+      if (now >= next) {
+        next.setUTCDate(next.getUTCDate() + 1);
+      }
+      return next;
+    }
+
+    function getCurrentReset(now) {
+      const todayReset = getTodayReset(now);
+      if (now >= todayReset) {
+        return todayReset;
+      }
+      const yesterday = new Date(todayReset);
+      yesterday.setUTCDate(yesterday.getUTCDate() - 1);
+      return yesterday;
+    }
+
+    function getCurrentWeeklyReset(now) {
+      const reset = new Date(Date.UTC(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        WEEKLY_RESET_UTC.hour,
+        WEEKLY_RESET_UTC.minute,
+        WEEKLY_RESET_UTC.second
+      ));
+
+      const day = now.getUTCDay();
+      const daysSince = (day + 7 - WEEKLY_RESET_UTC.day) % 7;
+      reset.setUTCDate(reset.getUTCDate() - daysSince);
+
+      if (now < reset) {
+        reset.setUTCDate(reset.getUTCDate() - 7);
+      }
+
+      return reset;
+    }
+
+    function getNextWeeklyReset(now) {
+      const current = getCurrentWeeklyReset(now);
+      const next = new Date(current);
+      next.setUTCDate(next.getUTCDate() + 7);
+      return next;
+    }
+
+    function pad(value) {
+      return String(value).padStart(2, '0');
+    }
+
+    function updateResetTimer() {
+      const now = new Date();
+      const nextReset = getNextReset(now);
+      const diff = nextReset - now;
+
+      const totalSeconds = Math.max(0, Math.floor(diff / 1000));
+      const hours = Math.floor(totalSeconds / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      dailyPanelResetLabel.textContent = `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+      updateWeeklyResetTimer(now);
+      checkForReset(now);
+    }
+
+    function updateWeeklyResetTimer(now) {
+      const nextWeekly = getNextWeeklyReset(now);
+      const diff = nextWeekly - now;
+
+      const totalSeconds = Math.max(0, Math.floor(diff / 1000));
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+
+      weeklyResetLabel.textContent = `${days}:${pad(hours)}:${pad(minutes)}:${pad(seconds)}`;
+    }
+
+    function extractEventChallengesTimeLeft(text) {
+      const lines = text.split('\n');
+      const startIndex = lines.findIndex((line) => line.includes('#### Event Challenges'));
+      if (startIndex === -1) {
+        return '--';
+      }
+
+      for (let i = startIndex + 1; i < lines.length; i += 1) {
+        const line = lines[i].trim();
+        if (!line) {
+          continue;
+        }
+        if (line.startsWith('#### ')) {
+          break;
+        }
+        if (line.toLowerCase().includes('left')) {
+          return line;
+        }
+      }
+
+      return '--';
+    }
+
+    function checkForReset(now) {
+      const currentReset = getCurrentReset(now);
+      const resetKey = currentReset.toISOString();
+      const lastResetKey = localStorage.getItem('lastDailyReset');
+
+      if (lastResetKey !== resetKey) {
+        localStorage.setItem('lastDailyReset', resetKey);
+        fetchDailies();
+      }
+    }
+
+    function normalizeChallenge(line) {
+      return line
+        .replace(/^\*\s+/, '')
+        .replace(/\*\*/g, '')
+        .replace(/Tips.*$/i, '')
+        .replace(/\s{2,}\d+\s*$/, '')
+        .replace(/\s+$/, '')
+        .trim();
+    }
+
+    function parseChallenge(line) {
+      const firstMarker = /1\u02E2\u1D57|1st/i;
+      const isFallout1st = firstMarker.test(line);
+      const normalized = normalizeChallenge(line)
+        .replace(/\s*1\u02E2\u1D57\s*/gi, ' ')
+        .replace(/\s*1st\s*/gi, ' ')
+        .replace(/\s{2,}/g, ' ')
+        .trim();
+      return { text: normalized, isFallout1st };
+    }
+
+    function extractDailyChallenges(text) {
+      const lines = text.split('\n');
+      const startIndex = lines.findIndex((line) => line.includes('#### Daily Challenges'));
+      const endIndex = lines.findIndex((line) => line.includes('#### Weekly Challenges'));
+
+      if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
+        return [];
+      }
+
+      const section = lines.slice(startIndex + 1, endIndex);
+      const rawItems = section.filter((line) => line.trim().startsWith('*'));
+      const parsed = rawItems
+        .map(parseChallenge)
+        .filter((item) => item.text.length > 0 && !item.text.toLowerCase().includes('daily challenges'));
+
+      const seen = new Set();
+      return parsed.filter((item) => {
+        const key = `${item.text}|${item.isFallout1st}`;
+        if (seen.has(key)) {
+          return false;
+        }
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function extractWeeklyChallenges(text) {
+      const lines = text.split('\n');
+      const startIndex = lines.findIndex((line) => line.includes('#### Weekly Challenges'));
+      const endIndex = lines.findIndex((line) => line.includes('#### Event Challenges'));
+
+      if (startIndex === -1 || endIndex === -1 || endIndex <= startIndex) {
+        return [];
+      }
+
+      const section = lines.slice(startIndex + 1, endIndex);
+      const rawItems = section.filter((line) => line.trim().startsWith('*'));
+      const parsed = rawItems
+        .map(parseChallenge)
+        .filter((item) => item.text.length > 0 && !item.text.toLowerCase().includes('weekly challenges'));
+
+      const seen = new Set();
+      return parsed.filter((item) => {
+        const key = `${item.text}|${item.isFallout1st}`;
+        if (seen.has(key)) {
+          return false;
+        }
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function extractEventChallenges(text) {
+      const lines = text.split('\n');
+      const startIndex = lines.findIndex((line) => line.includes('#### Event Challenges'));
+      const endIndex = lines.findIndex((line) => line.includes('#### Axolotl of the month'));
+
+      if (startIndex === -1) {
+        return [];
+      }
+
+      const section = lines.slice(startIndex + 1, endIndex === -1 ? lines.length : endIndex);
+      const rawItems = section.filter((line) => line.trim().startsWith('*'));
+      const parsed = rawItems
+        .map(parseChallenge)
+        .filter((item) => item.text.length > 0 && !item.text.toLowerCase().includes('event challenges'));
+
+      const seen = new Set();
+      return parsed.filter((item) => {
+        const key = `${item.text}|${item.isFallout1st}`;
+        if (seen.has(key)) {
+          return false;
+        }
+        seen.add(key);
+        return true;
+      });
+    }
+
+    function renderChallenges(items) {
+      dailyList.innerHTML = '';
+
+      if (items.length === 0) {
+        dailyPlaceholder.textContent = 'No daily challenges found.';
+        dailyPlaceholder.style.display = 'block';
+        updateProgress(0, 0, dailyProgressFill, dailyProgressText);
+        return;
+      }
+
+      dailyPlaceholder.style.display = 'none';
+
+      renderChecklist({
+        items,
+        listEl: dailyList,
+        progressFillEl: dailyProgressFill,
+        progressTextEl: dailyProgressText,
+        storagePrefix: 'dailyChecklist',
+        onChange: () => updateProgressFromDOM(dailyList, dailyProgressFill, dailyProgressText),
+        scope: 'daily',
+        allowFallout1st: fallout1stToggle.checked
+      });
+    }
+
+    function renderWeeklyChallenges(items) {
+      weeklyList.innerHTML = '';
+
+      if (items.length === 0) {
+        weeklyPlaceholder.textContent = 'No weekly challenges found.';
+        weeklyPlaceholder.style.display = 'block';
+        updateProgress(0, 0, weeklyProgressFill, weeklyProgressText);
+        return;
+      }
+
+      weeklyPlaceholder.style.display = 'none';
+
+      renderChecklist({
+        items,
+        listEl: weeklyList,
+        progressFillEl: weeklyProgressFill,
+        progressTextEl: weeklyProgressText,
+        storagePrefix: 'weeklyChecklist',
+        onChange: () => updateProgressFromDOM(weeklyList, weeklyProgressFill, weeklyProgressText),
+        scope: 'weekly',
+        allowFallout1st: fallout1stToggle.checked
+      });
+    }
+
+    function renderEventChallenges(items) {
+      eventsList.innerHTML = '';
+
+      if (items.length === 0) {
+        eventsPlaceholder.textContent = 'No event challenges found.';
+        eventsPlaceholder.style.display = 'block';
+        updateProgress(0, 0, eventsProgressFill, eventsProgressText);
+        return;
+      }
+
+      eventsPlaceholder.style.display = 'none';
+
+      renderChecklist({
+        items,
+        listEl: eventsList,
+        progressFillEl: eventsProgressFill,
+        progressTextEl: eventsProgressText,
+        storagePrefix: 'eventChecklist',
+        onChange: () => updateProgressFromDOM(eventsList, eventsProgressFill, eventsProgressText),
+        scope: 'persistent',
+        allowFallout1st: fallout1stToggle.checked
+      });
+    }
+    async function fetchDailies() {
+      dailyPlaceholder.textContent = 'Loading daily challenges...';
+      dailyPlaceholder.style.display = 'block';
+
+      try {
+        const response = await fetch(DAILY_SOURCE, { cache: 'no-store' });
+        if (!response.ok) {
+          throw new Error('Daily source unavailable');
+        }
+
+        const text = await response.text();
+        const dailyItems = extractDailyChallenges(text);
+        const weeklyItems = extractWeeklyChallenges(text);
+        const eventItems = extractEventChallenges(text);
+        const eventTimeLeft = extractEventChallengesTimeLeft(text);
+        renderChallenges(dailyItems);
+        renderWeeklyChallenges(weeklyItems);
+        renderEventChallenges(eventItems);
+
+        const now = new Date();
+        dailyUpdated.textContent = `LAST SYNC: ${now.toLocaleString()}`;
+        weeklyUpdated.textContent = `LAST SYNC: ${now.toLocaleString()}`;
+        updateEventsTimestamp();
+        eventsResetLabel.textContent = eventTimeLeft;
+      } catch (error) {
+        dailyList.innerHTML = '';
+        dailyPlaceholder.textContent = 'Failed to load daily challenges. Source may be blocked (CORS) or unavailable.';
+        dailyPlaceholder.style.display = 'block';
+        weeklyList.innerHTML = '';
+        weeklyPlaceholder.textContent = 'Failed to load weekly challenges. Source may be blocked (CORS) or unavailable.';
+        weeklyPlaceholder.style.display = 'block';
+        eventsList.innerHTML = '';
+        eventsPlaceholder.textContent = 'Failed to load event challenges. Source may be blocked (CORS) or unavailable.';
+        eventsPlaceholder.style.display = 'block';
+        eventsResetLabel.textContent = '--';
+      }
+    }
+
+    function updateEventsTimestamp() {
+      const now = new Date();
+      eventsUpdated.textContent = `LAST SYNC: ${now.toLocaleString()}`;
+    }
+
+    function getTaskId(text) {
+      return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+    }
+
+    function loadToggleState() {
+      return localStorage.getItem('fallout1stEnabled') === 'true';
+    }
+
+    function saveToggleState(enabled) {
+      localStorage.setItem('fallout1stEnabled', String(enabled));
+    }
+
+    function loadQuestCompletion() {
+      const raw = localStorage.getItem('questCompletion');
+      return raw ? JSON.parse(raw) : {};
+    }
+
+    function saveQuestCompletion(data) {
+      localStorage.setItem('questCompletion', JSON.stringify(data));
+    }
+
+    function loadQuestGroupState(groupId) {
+      const raw = localStorage.getItem('questGroupState');
+      const state = raw ? JSON.parse(raw) : {};
+      return Boolean(state[groupId]);
+    }
+
+    function saveQuestGroupState(groupId, collapsed) {
+      const raw = localStorage.getItem('questGroupState');
+      const state = raw ? JSON.parse(raw) : {};
+      state[groupId] = collapsed;
+      localStorage.setItem('questGroupState', JSON.stringify(state));
+    }
+
+    function setQuestGroupCollapsed(wrapper, title, collapsed) {
+      wrapper.classList.toggle('quest-group--collapsed', collapsed);
+      title.setAttribute('aria-expanded', String(!collapsed));
+    }
+
+    function loadLocationGroupState(groupId) {
+      const raw = localStorage.getItem('locationGroupState');
+      const state = raw ? JSON.parse(raw) : {};
+      return Boolean(state[groupId]);
+    }
+
+    function saveLocationGroupState(groupId, collapsed) {
+      const raw = localStorage.getItem('locationGroupState');
+      const state = raw ? JSON.parse(raw) : {};
+      state[groupId] = collapsed;
+      localStorage.setItem('locationGroupState', JSON.stringify(state));
+    }
+
+    function setLocationGroupCollapsed(wrapper, title, collapsed) {
+      wrapper.classList.toggle('location-group--collapsed', collapsed);
+      title.setAttribute('aria-expanded', String(!collapsed));
+    }
+
+    function loadPanelState(panelId) {
+      const raw = localStorage.getItem('panelState');
+      const state = raw ? JSON.parse(raw) : {};
+      return Boolean(state[panelId]);
+    }
+
+    function savePanelState(panelId, collapsed) {
+      const raw = localStorage.getItem('panelState');
+      const state = raw ? JSON.parse(raw) : {};
+      state[panelId] = collapsed;
+      localStorage.setItem('panelState', JSON.stringify(state));
+    }
+
+    function isQuestCompleted(name) {
+      const data = loadQuestCompletion();
+      return Boolean(data[getTaskId(name)]);
+    }
+
+    function setQuestCompleted(name, checked) {
+      const data = loadQuestCompletion();
+      data[getTaskId(name)] = checked;
+      saveQuestCompletion(data);
+    }
+
+    function updateProgress(completed, total, progressFillEl, progressTextEl) {
+      const percent = total === 0 ? 0 : Math.round((completed / total) * 100);
+      progressFillEl.style.width = `${percent}%`;
+      progressTextEl.textContent = `${completed} / ${total} COMPLETE`;
+    }
+
+    function updateProgressFromDOM(listEl, progressFillEl, progressTextEl) {
+      const checkboxes = Array.from(listEl.querySelectorAll('input[type="checkbox"]'));
+      const total = checkboxes.length;
+      const completed = checkboxes.filter((cb) => cb.checked).length;
+      updateProgress(completed, total, progressFillEl, progressTextEl);
+    }
+
+    function updateOverallQuestProgress() {
+      const completion = loadQuestCompletion();
+      let total = 0;
+      let completed = 0;
+
+      QUEST_GROUPS.filter((group) => group.includeInOverall).forEach((group) => {
+        group.items.forEach((item) => {
+          const taskId = getTaskId(item);
+          total += 1;
+          if (completion[taskId]) {
+            completed += 1;
+          }
+        });
+      });
+
+      updateProgress(completed, total, questOverallFill, questOverallText);
+    }
+
+    function updateOverallLocationProgress() {
+      let total = 0;
+      let completed = 0;
+
+      LOCATION_GROUPS.forEach((group) => {
+        const stored = loadChecklist(group.storagePrefix, 'persistent');
+        group.items.forEach((item) => {
+          const taskId = getTaskId(item);
+          total += 1;
+          if (stored[taskId]) {
+            completed += 1;
+          }
+        });
+      });
+
+      updateProgress(completed, total, locationOverallFill, locationOverallText);
+    }
+
+    function applySearchFilter(container, query) {
+      const value = query.trim().toLowerCase();
+      const groups = Array.from(container.children);
+
+      groups.forEach((group) => {
+        const items = Array.from(group.querySelectorAll('.daily-item'));
+        let visibleCount = 0;
+        items.forEach((item) => {
+          const text = item.textContent.toLowerCase();
+          const match = value === '' || text.includes(value);
+          item.hidden = !match;
+          if (match) {
+            visibleCount += 1;
+          }
+        });
+
+        if (items.length > 0) {
+          group.hidden = visibleCount === 0;
+        }
+      });
+    }
+
+    function reorderDailyList(listEl) {
+      const items = Array.from(listEl.querySelectorAll('.daily-item'));
+      items.sort((a, b) => {
+        const aChecked = a.querySelector('input').checked;
+        const bChecked = b.querySelector('input').checked;
+        if (aChecked === bChecked) {
+          return Number(a.dataset.order) - Number(b.dataset.order);
+        }
+        return aChecked ? 1 : -1;
+      });
+
+      items.forEach((item) => {
+        item.classList.toggle('daily-item--checked', item.querySelector('input').checked);
+        listEl.appendChild(item);
+      });
+    }
+
+    function getStorageKey(storagePrefix, scope) {
+      if (scope === 'daily') {
+        return `${storagePrefix}:${getCurrentReset(new Date()).toISOString().slice(0, 10)}`;
+      }
+      if (scope === 'weekly') {
+        return `${storagePrefix}:${getCurrentWeeklyReset(new Date()).toISOString().slice(0, 10)}`;
+      }
+      return `${storagePrefix}:persistent`;
+    }
+
+    function loadChecklist(storagePrefix, scope = 'daily') {
+      const raw = localStorage.getItem(getStorageKey(storagePrefix, scope));
+      return raw ? JSON.parse(raw) : {};
+    }
+
+    function saveChecklist(storagePrefix, data, scope = 'daily') {
+      localStorage.setItem(getStorageKey(storagePrefix, scope), JSON.stringify(data));
+    }
+
+    function renderChecklist({ items, listEl, progressFillEl, progressTextEl, storagePrefix, onChange, allowFallout1st, scope, useGlobalQuestState }) {
+      listEl.innerHTML = '';
+      const stored = useGlobalQuestState ? loadQuestCompletion() : loadChecklist(storagePrefix, scope);
+
+      items.forEach((item, index) => {
+        const itemText = typeof item === 'string' ? item : item.text;
+        const itemIsFallout1st = typeof item === 'string' ? false : item.isFallout1st;
+        if (itemIsFallout1st && !allowFallout1st) {
+          return;
+        }
+        const li = document.createElement('li');
+        li.className = 'daily-item';
+        li.dataset.order = String(index);
+        if (itemIsFallout1st) {
+          li.dataset.fallout1st = 'true';
+        }
+
+        const label = document.createElement('label');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.dataset.taskId = getTaskId(itemText);
+        checkbox.checked = Boolean(stored[checkbox.dataset.taskId]);
+        checkbox.addEventListener('change', () => {
+          if (useGlobalQuestState) {
+            setQuestCompleted(itemText, checkbox.checked);
+          } else {
+            stored[checkbox.dataset.taskId] = checkbox.checked;
+            saveChecklist(storagePrefix, stored, scope);
+          }
+          reorderDailyList(listEl);
+          onChange();
+        });
+
+        const text = document.createElement('span');
+        text.textContent = itemText;
+        if (itemIsFallout1st) {
+          const badge = document.createElement('img');
+          badge.className = 'daily-item__badge';
+          badge.src = 'https://static.wikia.nocookie.net/fallout/images/0/0a/FO1st.png';
+          badge.alt = 'Fallout 1st';
+          text.appendChild(badge);
+        }
+
+        label.append(checkbox, text);
+        li.append(label);
+        listEl.append(li);
+      });
+
+      reorderDailyList(listEl);
+      updateProgressFromDOM(listEl, progressFillEl, progressTextEl);
+    }
+
+    updateResetTimer();
+    setInterval(updateResetTimer, 1000);
+    fetchDailies();
+    renderChecklist({
+      items: DAILY_QUESTS,
+      listEl: questList,
+      progressFillEl: questProgressFill,
+      progressTextEl: questProgressText,
+      storagePrefix: 'questChecklist',
+      onChange: () => updateProgressFromDOM(questList, questProgressFill, questProgressText),
+      scope: 'daily',
+      allowFallout1st: true
+    });
+
+    function renderQuestGroups() {
+      questGroups.innerHTML = '';
+
+      QUEST_GROUPS.forEach((group) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'quest-group';
+        wrapper.dataset.groupId = group.id;
+
+        const title = document.createElement('button');
+        title.type = 'button';
+        title.className = 'quest-group__title';
+        title.setAttribute('aria-expanded', 'true');
+
+        const titleText = document.createElement('span');
+        titleText.textContent = group.title;
+
+        const caret = document.createElement('span');
+        caret.className = 'quest-group__caret';
+        caret.textContent = '▼';
+
+        title.append(titleText, caret);
+
+        const progress = document.createElement('div');
+        progress.className = 'panel__progress';
+
+        const progressLabel = document.createElement('div');
+        progressLabel.className = 'panel__progress-label';
+        progressLabel.textContent = 'PROGRESS';
+
+        const track = document.createElement('div');
+        track.className = 'progress-track';
+
+        const fill = document.createElement('div');
+        fill.className = 'progress-fill';
+        track.appendChild(fill);
+
+        const progressText = document.createElement('div');
+        progressText.className = 'progress-text';
+        progressText.textContent = '0 / 0 COMPLETE';
+
+        progress.append(progressLabel, track, progressText);
+
+        const list = document.createElement('ul');
+        list.className = 'daily-list';
+
+        wrapper.append(title, progress, list);
+        questGroups.appendChild(wrapper);
+
+        renderChecklist({
+          items: group.items,
+          listEl: list,
+          progressFillEl: fill,
+          progressTextEl: progressText,
+          storagePrefix: group.storagePrefix,
+          onChange: () => {
+            updateProgressFromDOM(list, fill, progressText);
+            updateOverallQuestProgress();
+          },
+          scope: 'persistent',
+          allowFallout1st: true,
+          useGlobalQuestState: true
+        });
+
+        const collapsed = loadQuestGroupState(group.id);
+        setQuestGroupCollapsed(wrapper, title, collapsed);
+
+        title.addEventListener('click', () => {
+          const isCollapsed = !wrapper.classList.contains('quest-group--collapsed');
+          setQuestGroupCollapsed(wrapper, title, isCollapsed);
+          saveQuestGroupState(group.id, isCollapsed);
+        });
+      });
+
+      updateOverallQuestProgress();
+      applySearchFilter(questGroups, questSearch.value);
+    }
+
+    renderQuestGroups();
+
+    function renderLocationGroups() {
+      locationGroups.innerHTML = '';
+
+      LOCATION_GROUPS.forEach((group) => {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'location-group';
+        wrapper.dataset.groupId = group.id;
+
+        const title = document.createElement('button');
+        title.type = 'button';
+        title.className = 'location-group__title';
+        title.setAttribute('aria-expanded', 'true');
+
+        const titleText = document.createElement('span');
+        titleText.textContent = group.title;
+
+        const caret = document.createElement('span');
+        caret.className = 'location-group__caret';
+        caret.textContent = '▼';
+
+        title.append(titleText, caret);
+
+        const progress = document.createElement('div');
+        progress.className = 'panel__progress';
+
+        const progressLabel = document.createElement('div');
+        progressLabel.className = 'panel__progress-label';
+        progressLabel.textContent = 'PROGRESS';
+
+        const track = document.createElement('div');
+        track.className = 'progress-track';
+
+        const fill = document.createElement('div');
+        fill.className = 'progress-fill';
+        track.appendChild(fill);
+
+        const progressText = document.createElement('div');
+        progressText.className = 'progress-text';
+        progressText.textContent = '0 / 0 COMPLETE';
+
+        progress.append(progressLabel, track, progressText);
+
+        const list = document.createElement('ul');
+        list.className = 'daily-list';
+
+        wrapper.append(title, progress, list);
+        locationGroups.appendChild(wrapper);
+
+        renderChecklist({
+          items: group.items,
+          listEl: list,
+          progressFillEl: fill,
+          progressTextEl: progressText,
+          storagePrefix: group.storagePrefix,
+          onChange: () => {
+            updateProgressFromDOM(list, fill, progressText);
+            updateOverallLocationProgress();
+          },
+          scope: 'persistent',
+          allowFallout1st: true
+        });
+
+        const collapsed = loadLocationGroupState(group.id);
+        setLocationGroupCollapsed(wrapper, title, collapsed);
+
+        title.addEventListener('click', () => {
+          const isCollapsed = !wrapper.classList.contains('location-group--collapsed');
+          setLocationGroupCollapsed(wrapper, title, isCollapsed);
+          saveLocationGroupState(group.id, isCollapsed);
+        });
+      });
+    }
+
+    renderLocationGroups();
+    applySearchFilter(locationGroups, locationSearch.value);
+    updateOverallLocationProgress();
+
+    fallout1stToggle.checked = loadToggleState();
+    if (fallout1stToggle.checked) {
+      fetchDailies();
+    }
+
+    fallout1stToggle.addEventListener('change', () => {
+      saveToggleState(fallout1stToggle.checked);
+      fetchDailies();
+    });
+
+    document.querySelectorAll('[data-collapsible]').forEach((panel) => {
+      const panelId = panel.dataset.collapsible;
+      const button = panel.querySelector('.panel__title--button');
+      if (!button) {
+        return;
+      }
+      const collapsed = loadPanelState(panelId);
+      panel.classList.toggle('terminal__panel--collapsed', collapsed);
+      button.setAttribute('aria-expanded', String(!collapsed));
+
+      button.addEventListener('click', () => {
+        const isCollapsed = !panel.classList.contains('terminal__panel--collapsed');
+        panel.classList.toggle('terminal__panel--collapsed', isCollapsed);
+        button.setAttribute('aria-expanded', String(!isCollapsed));
+        savePanelState(panelId, isCollapsed);
+      });
+    });
+
+    const tabButtons = Array.from(document.querySelectorAll('.prompt__nav-tab'));
+    const tabPanels = Array.from(document.querySelectorAll('[data-tab-panel]'));
+    const hoverSound = new Audio(HOVER_SOUND_URL);
+    hoverSound.volume = 0.18;
+    hoverSound.preload = 'auto';
+    let lastHoverAt = 0;
+
+    function loadActiveTab() {
+      return localStorage.getItem('activeTab') || 'quests';
+    }
+
+    function setActiveTab(tabId) {
+      tabButtons.forEach((button) => {
+        const isActive = button.dataset.tabTarget === tabId;
+        button.setAttribute('aria-pressed', String(isActive));
+      });
+
+      tabPanels.forEach((panel) => {
+        panel.hidden = panel.dataset.tabPanel !== tabId;
+      });
+
+      localStorage.setItem('activeTab', tabId);
+    }
+
+    tabButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        setActiveTab(button.dataset.tabTarget);
+      });
+    });
+
+    setActiveTab(loadActiveTab());
+
+    questSearch.addEventListener('input', () => {
+      applySearchFilter(questGroups, questSearch.value);
+    });
+
+    locationSearch.addEventListener('input', () => {
+      applySearchFilter(locationGroups, locationSearch.value);
+    });
+
+    document.addEventListener('pointerover', (event) => {
+      const target = event.target.closest(
+        '.daily-item label, .prompt__nav-tab, .quest-group__title, .location-group__title, .panel__title--button'
+      );
+      if (!target) {
+        return;
+      }
+
+      const now = Date.now();
+      if (now - lastHoverAt < 80) {
+        return;
+      }
+      lastHoverAt = now;
+      hoverSound.currentTime = 0;
+      hoverSound.play().catch(() => {});
+    });
+  </script>
+</body>
+</html>
+
